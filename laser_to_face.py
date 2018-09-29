@@ -3,7 +3,6 @@ from picamera import PiCamera
 from picamera.array import PiRGBArray
 from motor_laser import *
 
-
 ####### TO BE TESTED ON PI #######
 
 class LaserToFace:
@@ -68,9 +67,12 @@ class LaserToFace:
             difference_x = self.frame_center_x - center_face_x
             difference_y = self.frame_center_y - center_face_y
             print("[DISTANCE TO FACE] X:{}, Y:{}".format(difference_x, difference_y))
-            ####### check if the center of the screen is in the sqaure of the face 
-            self.servo_x.move(difference_x)
-            self.servo_y.move(-difference_y)
+
+            # Check if the center of the screen is in the sqaure of the face 
+            if not abs(difference_x) < w:
+                self.servo_x.move(difference_x)
+            if not abs(difference_y) < h:
+                self.servo_y.move(-difference_y)   
 
             if abs(difference_y) < self.laser_face_distance and abs(difference_x) < self.laser_face_distance:
                 self.laser.on()

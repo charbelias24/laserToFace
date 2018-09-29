@@ -36,9 +36,9 @@ class Servo:
 		print("[SERVO] Current position:", self.current_pos)
 
 	def move(self, degree=0):
-		if degree >= 60:
+		if degree >= 0:
 			self.move_right(translate(degree, 0, 400, 0, 20))
-		elif degree <= -60:
+		else:
 			self.move_left(translate(-degree, 0, 400, 0, 20))
 		sleep(0.1)
 
