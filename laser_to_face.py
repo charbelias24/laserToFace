@@ -69,9 +69,9 @@ class LaserToFace:
             print("[DISTANCE TO FACE] X:{}, Y:{}".format(difference_x, difference_y))
 
             # Check if the center of the screen is in the sqaure of the face 
-            if not abs(difference_x) < w:
+            if not abs(difference_x) < w / 2:
                 self.servo_x.move(difference_x)
-            if not abs(difference_y) < h:
+            if not abs(difference_y) < h / 2:
                 self.servo_y.move(-difference_y)   
 
             if abs(difference_y) < self.laser_face_distance and abs(difference_x) < self.laser_face_distance:
